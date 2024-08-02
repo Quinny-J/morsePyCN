@@ -10,7 +10,7 @@
 <body>
     <div class="box-container">
         <div class="box">
-            <div class="steamy-box">
+            <div class="morse-box">
                 <i class="fa-solid fa-terminal"></i>
                 <span>morsePyCN</span>
             </div>
@@ -19,17 +19,17 @@
                 <h2>Decode morse code</h2>
             </div>
 
-            <!-- Morse code input form -->
-            <form id="steamy-form" method="post" class="input-group">
-                <input id="steamy-input" name="morse_code" type="text" placeholder="Decode">
+            <!-- Morse decode input form -->
+            <form id="morse-form" method="post" class="input-group">
+                <input id="morse-input" name="morse_code" type="text" placeholder="Decode">
                 <button type="submit" name="action" value="decode" id="send-button">
                     <i class="fas fa-search"></i>
                 </button>
             </form>
 
-              <!-- Morse code input form -->
-              <form id="steamy-form" method="post" class="input-group">
-                <input id="steamy-input" name="morse_code" type="text" placeholder="Encode">
+              <!-- Morse encode input form -->
+              <form id="morse-form" method="post" class="input-group">
+                <input id="morse-input" name="morse_code" type="text" placeholder="Encode">
                 <button type="submit" name="action" value="encode" id="send-button">
                     <i class="fas fa-search"></i>
                 </button>
@@ -39,7 +39,6 @@
             <!-- Tab buttons -->
             <div class="displayTab">
                 <button class="displayTablinks" onclick="displayType(event, 'Response')"><i class="fa-regular fa-file-code"></i> Response</button>
-             <!--   <button class="displayTablinks" onclick="displayType(event, 'History')"><i class="fa-solid fa-highlighter"></i> History</button>-->
             </div>
 
             <!-- Response tab content -->
@@ -54,25 +53,10 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-
-            <!-- History tab content -->
-           <!-- <div id="History" class="displayTabcontent">
-                <div class="box-content">
-                    <div class="response-box">
-                        <h3>Decoded History</h3>
-                        <ul>
-                            {% for command in commands_ran %}
-                            <li>{{ command.strip() }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            -->    
-            <!-- Footer -->
+            </div> 
+             <!-- Github footer -->
             <div id="Test" class="input-group">
-                <label id="steamy-label"><i class="fa-regular fa-file-code"></i> Made by <a href="https://github.com/quinny-j">github.com/quinny-j</a></label>
+                <label id="morse-label"><i class="fa-regular fa-file-code"></i> Made by <a href="https://github.com/quinny-j">github.com/quinny-j</a></label>
             </div>
         </div>
     </div>

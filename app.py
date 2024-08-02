@@ -56,30 +56,35 @@ def encode_text_to_morse(text):
     encoded_message = ' '.join(text_to_morse_code.get(char, '') for char in text if char in text_to_morse_code or char == ' ')
     return encoded_message
 
-
+# this is the index/main route of your lets say website 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    # declare our variables for use later
     decoded_message = ''
     encoded_message = ''
     error_message = ''
     
+    # check if we get a POST method and assign variable from the form data
     if request.method == 'POST':
         morse_code = request.form.get('morse_code', '').strip()
         action = request.form.get('action', '')
         
+        # depending on the action data from the form 
+        # do appropriate actions 
         if action == 'decode':
-            if not is_valid_morse_code(morse_code):
+            if not is_valid_morse_code(morse_code): # check if its not valid morse code
                 error_message = "Invalid Morse code input. Please enter valid Morse code."
             else:
                 decoded_message = decode_morse_code(morse_code)
         
         elif action == 'encode':
-            if is_valid_morse_code(morse_code):
+            if is_valid_morse_code(morse_code): # check for morse code because you don't want to recode it
                 error_message = "Don't try that its not how you encode something!"
             else:
                 encoded_message = encode_text_to_morse(morse_code)
                 print(encoded_message)
-    
+    # render html page from /templates and pass the data needed to display
     return render_template('index.html', decoded_message=decoded_message, encoded_message=encoded_message, error_message=error_message)
 
+# tell flask to run the app or in this case our morsePy script for codenation
 app.run()
