@@ -1,11 +1,11 @@
-## morsePyCN
+## 🪖 morsePyCN
 Python script to allows user to encode & decode Morse code
 Via a webpage powered by flask 
 
-## Requirements
+## 📋 Requirements
 - Flask
 
-## Features
+## 📗Features
 - Encode & Decode Morse code input via web interface.
 
 ![PICTURE](https://raw.githubusercontent.com/Quinny-J/morsePyCN/main/decode.png)
