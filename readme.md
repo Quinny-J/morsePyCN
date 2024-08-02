@@ -1,6 +1,6 @@
 ### morsePyDN
-# Python script to allows user to encode & decode Morse code
-# Via a webpage powered by flask 
+Python script to allows user to encode & decode Morse code
+Via a webpage powered by flask 
 
 ## Requirements
 - Flask
