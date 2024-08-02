@@ -1,5 +1,6 @@
 # using re for regex expressions
 import re
+import colorama
 
 # morse code dictionary
 morse_code_dict = {
@@ -52,19 +53,19 @@ def encode_text_to_morse(text):
 
 
 while(True):
-    options_input = int(input("(1) For Encoding\n(2) For Decoding\n(9) To exit\n$:"))
-
-    if int(options_input) == 1:
-        input_to_encode = input("What would you like to encode ? ")
-        print(f"Encoded : {encode_text_to_morse(input_to_encode)}")
-    elif int(options_input) == 2:
-        input_to_decode = input("What would you like to decode ? ")
+    options_input = input(f"{colorama.Fore.BLACK}({colorama.Fore.YELLOW}1{colorama.Fore.BLACK}){colorama.Fore.WHITE} For Encoding\n{colorama.Fore.BLACK}({colorama.Fore.GREEN}2{colorama.Fore.BLACK}){colorama.Fore.WHITE} For Decoding\n{colorama.Fore.BLACK}({colorama.Fore.RED}9{colorama.Fore.BLACK}){colorama.Fore.WHITE} To exit\n{colorama.Fore.BLACK}${colorama.Fore.WHITE}:")
+    
+    if options_input == "1":
+        input_to_encode = input(f"{colorama.Fore.BLUE}What would you like to encode ? ")
+        print(f"{colorama.Fore.GREEN}Encoded{colorama.Fore.WHITE} : {encode_text_to_morse(input_to_encode)}")
+    elif options_input == "2":
+        input_to_decode = input(f"{colorama.Fore.BLUE}What would you like to decode ? ")
         if not is_valid_morse_code(input_to_decode):
             print("Invalid morse code")
         else:
-            print(f"Decoded : {decode_morse_code(input_to_decode)}")
-    elif int(options_input) == 9:
-        print("Exiting")
+            print(f"{colorama.Fore.RED}Decoded{colorama.Fore.WHITE} : {decode_morse_code(input_to_decode)}")
+    elif options_input == "9":
+        print(f"{colorama.Fore.RED} Exiting !")
         break
     else:
-        print("Please choose a menu option from above.\n")
+        print(f"{colorama.Fore.CYAN}Please choose a menu option from above.\n")
