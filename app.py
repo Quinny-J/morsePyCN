@@ -1,3 +1,5 @@
+# using re for regex expressions
+import re
 
 # morse code dictionary
 morse_code_dict = {
@@ -25,8 +27,16 @@ text_to_morse_code = {
     '+': '.-.-.', '-': '-....-', '_': '..--.-', '"': '.-..-.', '$': '...-..-', '@': '.--.-.'
 }
 
+# check if its valid morse code by using regex
+# https://regexr.com i used this to build the expression
+def is_valid_morse_code(morse_code):
+    pattern = re.compile(r'^[.\- /]+$')
+    return pattern.match(morse_code)
 
 def decode_morse_code(morse_code):
+    if not is_valid_morse_code(morse_code):
+        return "Invalid Morse code input. Please enter valid Morse code."
+    
     words = morse_code.split(' / ')
     decoded_message = []
     for word in words:
@@ -49,7 +59,10 @@ while(True):
         print(f"Encoded : {encode_text_to_morse(input_to_encode)}")
     elif int(options_input) == 2:
         input_to_decode = input("What would you like to decode ? ")
-        print(f"Decoded : {decode_morse_code(input_to_decode)}")
+        if not is_valid_morse_code(input_to_decode):
+            print("Invalid morse code")
+        else:
+            print(f"Decoded : {decode_morse_code(input_to_decode)}")
     elif int(options_input) == 9:
         print("Exiting")
         break
