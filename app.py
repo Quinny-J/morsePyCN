@@ -65,7 +65,7 @@ while(True):
         else:
             print(f"{colorama.Fore.RED}Decoded{colorama.Fore.WHITE} : {decode_morse_code(input_to_decode)}")
     elif options_input == "9":
-        print(f"{colorama.Fore.RED} Exiting !")
+        print(f"{colorama.Fore.RED}Exiting !")
         break
     else:
         print(f"{colorama.Fore.CYAN}Please choose a menu option from above.\n")
