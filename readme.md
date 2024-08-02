@@ -7,3 +7,6 @@
 
 ## Features
 - Encode & Decode Morse code input via web interface.
+
+![PICTURE](https://github.com/Quinny-J/morsePyCN/decode.png)
+![PICTURE](https://github.com/Quinny-J/morsePyCN/encode.png)
