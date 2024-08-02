@@ -34,6 +34,7 @@ def is_valid_morse_code(morse_code):
     pattern = re.compile(r'^[.\- /]+$')
     return pattern.match(morse_code)
 
+# decode morse function based on provided input
 def decode_morse_code(morse_code):
     if not is_valid_morse_code(morse_code):
         return "Invalid Morse code input. Please enter valid Morse code."
@@ -46,6 +47,7 @@ def decode_morse_code(morse_code):
         decoded_message.append(decoded_word)  
     return ' '.join(decoded_message)
 
+# encode morse function based on provided input
 def encode_text_to_morse(text):
     text = text.upper()
     encoded_message = ' '.join(text_to_morse_code.get(char, '') for char in text if char in text_to_morse_code or char == ' ')
@@ -53,6 +55,7 @@ def encode_text_to_morse(text):
 
 
 while(True):
+    # give the user some options and then check their input
     options_input = input(f"{colorama.Fore.BLACK}({colorama.Fore.YELLOW}1{colorama.Fore.BLACK}){colorama.Fore.WHITE} For Encoding\n{colorama.Fore.BLACK}({colorama.Fore.GREEN}2{colorama.Fore.BLACK}){colorama.Fore.WHITE} For Decoding\n{colorama.Fore.BLACK}({colorama.Fore.RED}9{colorama.Fore.BLACK}){colorama.Fore.WHITE} To exit\n{colorama.Fore.BLACK}${colorama.Fore.WHITE}:")
     
     if options_input == "1":
