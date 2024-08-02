@@ -1,6 +1,9 @@
-# using re for regex expressions
+# import flask to handle the web
+# using os for file handling and re for regex expressions
+from flask import Flask, render_template, request
 import re
-import colorama
+
+app = Flask(__name__)
 
 # morse code dictionary
 morse_code_dict = {
@@ -54,21 +57,29 @@ def encode_text_to_morse(text):
     return encoded_message
 
 
-while(True):
-    # give the user some options and then check their input
-    options_input = input(f"{colorama.Fore.BLACK}({colorama.Fore.YELLOW}1{colorama.Fore.BLACK}){colorama.Fore.WHITE} For Encoding\n{colorama.Fore.BLACK}({colorama.Fore.GREEN}2{colorama.Fore.BLACK}){colorama.Fore.WHITE} For Decoding\n{colorama.Fore.BLACK}({colorama.Fore.RED}9{colorama.Fore.BLACK}){colorama.Fore.WHITE} To exit\n{colorama.Fore.BLACK}${colorama.Fore.WHITE}:")
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    decoded_message = ''
+    encoded_message = ''
+    error_message = ''
     
-    if options_input == "1":
-        input_to_encode = input(f"{colorama.Fore.BLUE}What would you like to encode ? ")
-        print(f"{colorama.Fore.GREEN}Encoded{colorama.Fore.WHITE} : {encode_text_to_morse(input_to_encode)}")
-    elif options_input == "2":
-        input_to_decode = input(f"{colorama.Fore.BLUE}What would you like to decode ? ")
-        if not is_valid_morse_code(input_to_decode):
-            print("Invalid morse code")
-        else:
-            print(f"{colorama.Fore.RED}Decoded{colorama.Fore.WHITE} : {decode_morse_code(input_to_decode)}")
-    elif options_input == "9":
-        print(f"{colorama.Fore.RED}Exiting !")
-        break
-    else:
-        print(f"{colorama.Fore.CYAN}Please choose a menu option from above.\n")
+    if request.method == 'POST':
+        morse_code = request.form.get('morse_code', '').strip()
+        action = request.form.get('action', '')
+        
+        if action == 'decode':
+            if not is_valid_morse_code(morse_code):
+                error_message = "Invalid Morse code input. Please enter valid Morse code."
+            else:
+                decoded_message = decode_morse_code(morse_code)
+        
+        elif action == 'encode':
+            if is_valid_morse_code(morse_code):
+                error_message = "Don't try that its not how you encode something!"
+            else:
+                encoded_message = encode_text_to_morse(morse_code)
+                print(encoded_message)
+    
+    return render_template('index.html', decoded_message=decoded_message, encoded_message=encoded_message, error_message=error_message)
+
+app.run()

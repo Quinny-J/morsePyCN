@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse Code Decoder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <div class="box-container">
+        <div class="box">
+            <div class="steamy-box">
+                <i class="fa-solid fa-terminal"></i>
+                <span>morsePyCN</span>
+            </div>
+            <br>
+            <div class="box-header">
+                <h2>Decode morse code</h2>
+            </div>
+
+            <!-- Morse code input form -->
+            <form id="steamy-form" method="post" class="input-group">
+                <input id="steamy-input" name="morse_code" type="text" placeholder="Decode">
+                <button type="submit" name="action" value="decode" id="send-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+
+              <!-- Morse code input form -->
+              <form id="steamy-form" method="post" class="input-group">
+                <input id="steamy-input" name="morse_code" type="text" placeholder="Encode">
+                <button type="submit" name="action" value="encode" id="send-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <br>
+
+            <!-- Tab buttons -->
+            <div class="displayTab">
+                <button class="displayTablinks" onclick="displayType(event, 'Response')"><i class="fa-regular fa-file-code"></i> Response</button>
+             <!--   <button class="displayTablinks" onclick="displayType(event, 'History')"><i class="fa-solid fa-highlighter"></i> History</button>-->
+            </div>
+
+            <!-- Response tab content -->
+            <div id="Response" class="displayTabcontent">
+                <div class="box-content">
+                    <div class="response-box">
+                        <ul id="response-data">
+                            {{ decoded_message | safe }}
+                            {{ encoded_message | safe }}
+                            {{ error_message | safe}}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History tab content -->
+           <!-- <div id="History" class="displayTabcontent">
+                <div class="box-content">
+                    <div class="response-box">
+                        <h3>Decoded History</h3>
+                        <ul>
+                            {% for command in commands_ran %}
+                            <li>{{ command.strip() }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            -->    
+            <!-- Footer -->
+            <div id="Test" class="input-group">
+                <label id="steamy-label"><i class="fa-regular fa-file-code"></i> Made by <a href="https://github.com/quinny-j">github.com/quinny-j</a></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript function for tab switching -->
+    <script>
+        function displayType(evt, dispName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("displayTabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("displayTablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(dispName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>
